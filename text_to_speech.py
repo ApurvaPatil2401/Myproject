@@ -6,10 +6,7 @@ class TextToSpeechApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Text to Speech Converter")
-
         self.engine = pyttsx3.init()
-
-        # Variables to store user input
         self.text_to_speak = tk.StringVar()
         self.selected_language = tk.StringVar()
 
@@ -17,19 +14,16 @@ class TextToSpeechApp:
         self.create_widgets()
 
     def create_widgets(self):
-        # Text Input
         ttk.Label(self.root, text="Enter text:").grid(row=0, column=0, padx=5, pady=5)
         self.text_entry = ttk.Entry(self.root, textvariable=self.text_to_speak, width=40)
         self.text_entry.grid(row=0, column=1, padx=5, pady=5)
 
-        # Language Selection
         ttk.Label(self.root, text="Select Language:").grid(row=1, column=0, padx=5, pady=5)
         self.language_combobox = ttk.Combobox(self.root, textvariable=self.selected_language, 
-                                               values=["en", "fr", "de", "es"])  # Add more languages as needed
+                                               values=["en", "fr", "de", "es"])  
         self.language_combobox.grid(row=1, column=1, padx=5, pady=5)
-        self.language_combobox.current(0)  # Set default language to English
+        self.language_combobox.current(0)  
 
-        # Speech Parameters
         self.volume_label = ttk.Label(self.root, text="Volume:")
         self.volume_label.grid(row=2, column=0, padx=5, pady=5)
         self.volume_scale = ttk.Scale(self.root, from_=0, to=1, orient=tk.HORIZONTAL, command=self.update_volume)
@@ -37,7 +31,6 @@ class TextToSpeechApp:
         self.volume_scale.set(1)  # Default volume to maximum
         self.update_volume()
 
-        # Speak Button
         self.speak_button = ttk.Button(self.root, text="Speak", command=self.speak_text)
         self.speak_button.grid(row=3, column=0, columnspan=2, padx=5, pady=10)
 
